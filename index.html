@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+    <head>
+        <title>Test MetaScraper</title>
+    </head>
+    <body>
+        <div id="mainDiv">
+            <button id="scrapeButton">start</button>
+        </div>
+       <script>
+
+        document.getElementById('scrapeButton').addEventListener("click", async()=>{
+            const links = [
+                "https://www.microsoft.com/",
+    "https://www.segment.com",
+    "https://www.alienvault.com",
+    "https://www.datadoghq.com",
+    "https://www.solarwinds.com",
+    "https://www.zendesk.com",
+    "https://www.newrelic.com",
+    "https://www.cloudflare.com",
+    "https://www.logdna.com",
+    "https://www.honeycomb.io",
+    "https://www.bugsnag.com",
+    "https://www.librato.com",
+    "https://www.circonus.com",
+    "https://www.datadoghq.com",
+    "https://www.boundary.com",
+    "https://www.scoutapp.com",
+    "https://www.stackdriver.com",
+    "https://www.traceview.com",
+    "https://www.instana.com",
+    "https://www.sentry.io",
+    "https://www.sumologic.com",
+    "https://www.thousandeyes.com",
+    "https://www.loggly.com",
+    "https://www.papertrailapp.com",
+    "https://www.serverdensity.com",
+    "https://www.opsgenie.com",
+    "https://www.victorops.com",
+    "https://www.pagerduty.com",
+    "https://www.bigpanda.io",
+    "https://www.moogsoft.com",
+    "https://www.opsgenie.com",
+    "https://www.raintank.io",
+    "https://www.sensu.io",
+    "https://www.influxdata.com",
+    "https://www.kapacitor.io",
+    "https://www.telegraf.io",
+    "https://www.prometheus.io",
+    "https://www.grafana.com",
+    "https://www.splunk.com",
+    "https://www.sumologic.com",
+    "https://www.elastic.co",
+    "https://www.kibana.org",
+    "https://www.graylog.org",
+    "https://www.qbox.io",
+    "https://www.logz.io",
+    "https://www.bonsai.io",
+    "https://www.sematext.com",
+    "https://www.scalyr.com",
+    "https://www.exabeam.com",
+    "https://www.arcsight.com",
+    "https://www.coralogix.com"
+];
+            links.forEach(async (a)=>{
+                const res = await fetch(`http://localhost:8085/scrap?link=${a}`);
+            const data = await res.json()
+            const results = document.getElementById("mainDiv");
+
+            data.forEach(metadata=>{
+                const resultItem = document.createElement("div");
+                resultItem.innerHTML = `
+    
+                <h3>Title: ${metadata.publisher}</h3>
+                <img height="100px" width="100px" src=${metadata.logo}>
+                <p>${metadata.description}</p>
+                <p>Banner: </p>
+                <img height={100} width={100} src=${metadata.image}>
+
+                `;
+                results.appendChild(resultItem)
+            })
+            })
+            
+            
+
+        })
+
+
+       </script>
+    </body>
+</html>
